@@ -21,8 +21,43 @@ function getCellElements (currentRowElement) {
 
 
 // YOUR CODE GOES HERE
+let newText = replaceAllButton.insertAdjacentText('afterend', "")
+
 replaceAllButton.addEventListener('click', function() {
     
+    const findValue = findInput.value
+    const replaceValue = replaceInput.value
+
+    let replaced = 0
+
+    for (row = 0; row < rowElements.length; row++) {
+
+        const cellElements = getCellElements(rowElements[row])
+
+        for (cell = 0; cell < cellElements.length; cell++) {
+
+            if (cellElements[cell].innerText.includes(findValue)) {
+
+                const cellText = cellElements[cell].innerHTML.split(" ")
+
+                for (splitIndex = 0; splitIndex < cellText.length; splitIndex++) {
+                    
+                    const loopNumber = cellText[splitIndex].split("")
+
+
+                        if (cellText[splitIndex].includes(findValue)) {
+                        
+                            for (let loops = 0; loops < loopNumber.length; loops++) {
+                                console.log(cellText[splitIndex])
+                                cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
+                        }
+                        replaced++
+                    }
+                }
+            }
+        }
+    }
+    newText.textContent = `${replaced} items replaced`
 })
 
 
