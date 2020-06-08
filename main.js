@@ -24,6 +24,8 @@ function getCellElements (currentRowElement) {
 // YOUR CODE GOES HERE
 // Attempting to display number of replaced items
 // let newText = replaceAllButton.insertAdjacentText('afterend', "")
+console.log(localStorage)
+let previousSearch = localStorage.getItem("Previous search")
 let text = document.createElement("p")
 let node = document.createTextNode("")
 text.appendChild(node)
@@ -68,6 +70,8 @@ replaceAllButton.addEventListener('click', function() {
         }
         node.nodeValue = `${replaced} items replaced`
     }
+    let JSONString = JSON.stringify(previousSearch + findValue)
+    localStorage.setItem("Previous search", JSONString)
 })
 
 replaceOneButton.addEventListener('click', function() {
@@ -105,6 +109,8 @@ replaceOneButton.addEventListener('click', function() {
             }
         }
     }
+    let JSONString = JSON.stringify(previousSearch + findValue)
+    localStorage.setItem("Previous search", JSONString)
 })
 
 // One last thing: dedicate very careful attention to using variables and
