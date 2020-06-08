@@ -23,6 +23,10 @@ function getCellElements (currentRowElement) {
 // YOUR CODE GOES HERE
 // Attempting to display number of replaced items
 // let newText = replaceAllButton.insertAdjacentText('afterend', "")
+let text = document.createElement("p")
+let node = document.createTextNode("")
+text.appendChild(node)
+replaceInput.appendChild(text)
 
 replaceAllButton.addEventListener('click', function() {
     
@@ -45,7 +49,6 @@ replaceAllButton.addEventListener('click', function() {
                     
                     const loopNumber = cellText[splitIndex].split("")
 
-
                         if (cellText[splitIndex].includes(findValue)) {
                         
                             for (let loops = 0; loops < loopNumber.length; loops++) {
@@ -58,7 +61,8 @@ replaceAllButton.addEventListener('click', function() {
             }
         }
     }
-    // newText.textContent = `${replaced} items replaced`
+    console.log(replaced)
+    node.nodeValue = `${replaced} items replaced`
 })
 
 
