@@ -4,6 +4,7 @@
 const findInput = document.querySelector(".find-input")
 const replaceInput = document.querySelector(".replace-input")
 const replaceAllButton = document.querySelector(".replace-all-button")
+const replaceOneButton = document.querySelector(".replace-one-button")
 
 // The following variable holds your OUTER ARRAY of row elements.
 // Later you will need an OUTER LOOP to loop over the individual elements within
@@ -35,35 +36,76 @@ replaceAllButton.addEventListener('click', function() {
 
     let replaced = 0
 
-    for (row = 0; row < rowElements.length; row++) {
+    if (findValue != "") {
+        for (row = 0; row < rowElements.length; row++) {
 
-        const cellElements = getCellElements(rowElements[row])
+            const cellElements = getCellElements(rowElements[row])
 
-        for (cell = 0; cell < cellElements.length; cell++) {
+            for (cell = 0; cell < cellElements.length; cell++) {
 
-            if (cellElements[cell].innerText.includes(findValue)) {
+                if (document.getElementById("case-sensitive").checked == true) {
+                    cellElements[cell].innerText = cellElements[cell].innerText.toLowerCase()
+                }
 
-                const cellText = cellElements[cell].innerHTML.split(" ")
+                if (cellElements[cell].innerText.includes(findValue)) {
 
-                for (splitIndex = 0; splitIndex < cellText.length; splitIndex++) {
-                    
-                    const loopNumber = cellText[splitIndex].split("")
+                    const cellText = cellElements[cell].innerHTML.split(" ")
 
-                    if (cellText[splitIndex].includes(findValue)) {
+                    for (splitIndex = 0; splitIndex < cellText.length; splitIndex++) {
                         
-                        for (let loops = 0; loops < loopNumber.length; loops++) {
-                            cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
+                        const loopNumber = cellText[splitIndex].split("")
+
+                        if (cellText[splitIndex].includes(findValue)) {
+                            
+                            for (let loops = 0; loops < loopNumber.length; loops++) {
+                                cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
+                            }
+                            replaced++
                         }
-                        replaced++
+                    }
+                }
+            }
+        }
+        node.nodeValue = `${replaced} items replaced`
+    }
+})
+
+replaceOneButton.addEventListener('click', function() {
+    const findValue = findInput.value
+    const replaceValue = replaceInput.value
+
+    if (findValue != "") {
+        for (row = 0; row < rowElements.length; row++) {
+
+            const cellElements = getCellElements(rowElements[row])
+
+            for (cell = 0; cell < cellElements.length; cell++) {
+
+                if (document.getElementById("case-sensitive").checked == true) {
+                    cellElements[cell].innerText = cellElements[cell].innerText.toLowerCase()
+                }
+                
+                if (cellElements[cell].innerText.includes(findValue)) {
+
+                    const cellText = cellElements[cell].innerHTML.split(" ")
+
+                    for (splitIndex = 0; splitIndex < cellText.length; splitIndex++) {
+                        
+                        const loopNumber = cellText[splitIndex].split("")
+
+                        if (cellText[splitIndex].includes(findValue)) {
+                            
+                                cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
+                                splitIndex = cellText.length
+                                cell = cellElements.length
+                                row = rowElements.length
+                        }
                     }
                 }
             }
         }
     }
-    console.log(replaced)
-    node.nodeValue = `${replaced} items replaced`
 })
-
 
 // One last thing: dedicate very careful attention to using variables and
 // naming them accurately.
