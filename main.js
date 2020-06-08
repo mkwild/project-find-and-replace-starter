@@ -21,7 +21,8 @@ function getCellElements (currentRowElement) {
 
 
 // YOUR CODE GOES HERE
-let newText = replaceAllButton.insertAdjacentText('afterend', "")
+// Attempting to display number of replaced items
+// let newText = replaceAllButton.insertAdjacentText('afterend', "")
 
 replaceAllButton.addEventListener('click', function() {
     
@@ -57,7 +58,7 @@ replaceAllButton.addEventListener('click', function() {
             }
         }
     }
-    newText.textContent = `${replaced} items replaced`
+    // newText.textContent = `${replaced} items replaced`
 })
 
 
