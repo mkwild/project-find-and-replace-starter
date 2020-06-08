@@ -26,7 +26,7 @@ function getCellElements (currentRowElement) {
 let text = document.createElement("p")
 let node = document.createTextNode("")
 text.appendChild(node)
-replaceInput.appendChild(text)
+replaceAllButton.appendChild(text)
 
 replaceAllButton.addEventListener('click', function() {
     
@@ -49,11 +49,10 @@ replaceAllButton.addEventListener('click', function() {
                     
                     const loopNumber = cellText[splitIndex].split("")
 
-                        if (cellText[splitIndex].includes(findValue)) {
+                    if (cellText[splitIndex].includes(findValue)) {
                         
-                            for (let loops = 0; loops < loopNumber.length; loops++) {
-                                console.log(cellText[splitIndex])
-                                cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
+                        for (let loops = 0; loops < loopNumber.length; loops++) {
+                            cellElements[cell].innerHTML = cellElements[cell].innerHTML.replace(findValue, replaceValue)
                         }
                         replaced++
                     }

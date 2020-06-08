@@ -25,7 +25,14 @@ input {
 }
 
 button {
+    height: 1.6em;
+    width: 89.450px;
+}
 
+p {
+    position: relative;
+    top: -32px;
+    left: 100px;
 }
 
 .grid {
